@@ -1,34 +1,5 @@
 dependencies: 
-  - recipe: spark::install
-    local:
-      - kagent::install
-      - hadoop::install
-  - recipe: hadoop::install
-  - recipe: hadoop::nn
-    local:
-      - hadoop::install
-  - recipe: hadoop::rm
-    local:
-      - hadoop::install
-    global:  
-      - hadoop::nn
-  - recipe: hadoop::dn
-    local:
-      - hadoop::install
-    global:  
-      - hadoop::nn
-  - recipe: hadoop::nm
-    local:
-      - hadoop::install
-    global:  
-      - hadoop::rm
-  - recipe: hadoop::jhs
-    local:
-      - hadoop::install
-    global:  
-      - hadoop::nn
-      - hadoop::dn
-  - recipe: spark::master
+  - recipe: adam::default
     local:
       - spark::install
     global:  
@@ -36,9 +7,6 @@ dependencies:
       - hadoop::nm
       - hadoop::nn
       - hadoop::dn
-  - recipe: spark::slave
-    local:
-      - spark::install
   - recipe: adam::install
     local:
       - spark::install
