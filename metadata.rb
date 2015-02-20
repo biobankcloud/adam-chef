@@ -6,10 +6,8 @@ description      'Installs/Configures Adam/Spark'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 version          "1.0"
 
-depends          "hadoop"
-depends          "kagent"
 depends          "spark"
+depends          "kagent"
+depends          "hadoop"
 
-recipe           "install", "Installs Adam binaries"
-recipe           "master", "Starts a Adam master"
-recipe           "slave", "Starts a Adam slave"
+recipe           "default", "Installs Adam"

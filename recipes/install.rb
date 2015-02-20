@@ -49,17 +49,13 @@ bash 'extract-adam' do
 end
 
 
-link node[:adam][:base_dir] do
+link "#{node[:adam][:base_dir]}/adam" do
   owner node[:adam][:user]
   group node[:adam][:group]
   to node[:adam][:home]
 end
 
 
-libpath = File.expand_path '../../../kagent/libraries', __FILE__
-require File.join(libpath, 'inifile')
-
 my_ip = my_private_ip()
 master_ip = private_recipe_ip("spark","master")
 namenode_ip = private_recipe_ip("hadoop","nn")
-
