@@ -3,8 +3,8 @@ source "https://api.berkshelf.com"
 metadata
 
 cookbook 'kagent', github: 'karamelchef/kagent-chef'
-cookbook 'ark', github: 'hopshadoop/ark'
-cookbook 'hadoop', github: 'hopshadoop/apache-hadoop-chef'
+cookbook 'hops', github: 'hopshadoop/hops-hadoop-chef'
+cookbook 'ndb', github: 'hopshadoop/ndb-chef'
 cookbook 'spark', github: 'hopshadoop/spark-chef'
 cookbook 'java'
 
