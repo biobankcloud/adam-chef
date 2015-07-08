@@ -9,6 +9,7 @@
 
 group node[:adam][:group] do
   action :create
+  append true
 end
 
 user node[:adam][:user] do
