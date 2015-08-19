@@ -6,5 +6,5 @@ dependencies:
     local:
       - spark::install
     global:  
-      - hadoop::nn
-      - hadoop::dn
+      - hops::nn
+      - hops::dn

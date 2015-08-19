@@ -9,5 +9,7 @@ version          "1.0"
 depends          "spark"
 depends          "kagent"
 depends          "hadoop"
+depends          "hops"
 
-recipe           "default", "Installs Adam"
+recipe           "install", "Installs Adam binaries"
+recipe           "default", "Configures Adam"

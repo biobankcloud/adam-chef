@@ -7,9 +7,10 @@
 # All rights reserved
 #
 
-# group node[:adam][:group] do
-#   action :create
-# end
+group node[:adam][:group] do
+  action :create
+  append true
+end
 
 user node[:adam][:user] do
   action :create
