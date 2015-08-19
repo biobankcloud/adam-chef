@@ -7,20 +7,18 @@
 # All rights reserved
 #
 
-group node[:adam][:group] do
-  action :create
-end
+# group node[:adam][:group] do
+#   action :create
+# end
 
 user node[:adam][:user] do
-  supports :manage_home => true
-  home "/home/#{node[:adam][:user]}"
   action :create
   system true
   shell "/bin/bash"
   not_if "getent passwd #{node[:adam]['user']}"
 end
 
-group node[:adam][:group] do
+group node[:hadoop][:group] do
   action :modify
   members ["#{node[:adam][:user]}"]
   append true
@@ -58,4 +56,4 @@ end
 
 my_ip = my_private_ip()
 master_ip = private_recipe_ip("spark","master")
-namenode_ip = private_recipe_ip("hadoop","nn")
+namenode_ip = private_recipe_ip("hops","nn")
