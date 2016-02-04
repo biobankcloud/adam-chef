@@ -1,11 +1,3 @@
-#
-# Cookbook Name:: adam
-# Recipe:: install
-#
-# Copyright 2015, Jim Dowling
-#
-# All rights reserved
-#
 
 group node[:adam][:group] do
   action :create
@@ -55,6 +47,6 @@ link "#{node[:adam][:base_dir]}/adam" do
 end
 
 
-my_ip = my_private_ip()
-master_ip = private_recipe_ip("spark","master")
-namenode_ip = private_recipe_ip("hops","nn")
+
+#master_ip = private_recipe_ip("spark","master")
+#namenode_ip = private_recipe_ip("hops","nn")

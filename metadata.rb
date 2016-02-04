@@ -13,3 +13,11 @@ depends          "hops"
 
 recipe           "install", "Installs Adam binaries"
 recipe           "default", "Configures Adam"
+
+attribute "adam/user",
+:description => "Username to run adam as",
+:type => 'string'
+
+attribute "adam/group",
+:description => "Groupname to run adam as",
+:type => 'string'
