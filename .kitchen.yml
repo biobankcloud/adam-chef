@@ -12,7 +12,6 @@ provisioner:
   name: chef_solo
 
 platforms:
-#  - name: ubuntu-12.04
   - name: ubuntu-14.04
 #  - name: centos-6.5
 
@@ -31,8 +30,14 @@ suites:
       - recipe[spark::yarn]
       - recipe[adam]
     attributes:
-         hadoop:
+         vagrant: "true"
+         hdfs:
             user: glassfish
+         hadoop:
+            yarn:
+               user: glassfish
+            mr:
+               user: glassfish
             nn:
                private_ips: ["10.0.2.15"]
                public_ips: ["10.0.2.15"]
@@ -41,6 +46,7 @@ suites:
                public_ips: ["10.0.2.15"]
 #            native_libraries: "true"
          spark:
+            user: glassfish
             master:
                private_ips: ["10.0.2.15"]
             slave:
@@ -56,4 +62,3 @@ suites:
             private_ips: ["10.0.2.15"]
          private_ips: ["10.0.2.15"]
          public_ips: ["10.0.2.15"]
-         vagrant: "enabled"

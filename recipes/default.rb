@@ -1,4 +1,5 @@
 
 
-adam_upload_jars do
+adam_hdfs "upload_all_jars" do
+
 end
