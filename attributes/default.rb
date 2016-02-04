@@ -10,3 +10,4 @@ default[:adam][:base_dir]            = "/srv"
 default[:adam][:home]                = "#{node[:adam][:base_dir]}/adam-distribution_#{node[:scala][:version]}-#{node[:adam][:version]}"
 default[:adam][:url]                 = "#{default[:download_url]}/adam/adam-distribution_#{node.scala.version}-#{default[:adam][:version]}-bin.tar.gz"
 
+default[:adam][:jar]                 = "adam-cli_#{node.scala.version}-#{node.adam.version}.jar
