@@ -33,6 +33,34 @@ suites:
          vagrant: "true"
          hdfs:
             user: glassfish
+         ndb:
+            mgmd:
+               private_ips: ["10.0.2.15"]
+            ndbd:
+               private_ips: ["10.0.2.15"]
+            mysqld:
+               private_ips: ["10.0.2.15"]
+            memcached:
+               private_ips: ["10.0.2.15"]
+            private_ips: ["10.0.2.15"]
+            public_ips: ["10.0.2.15"]
+            enabled: "true"
+            use_systemd: "true"
+         hops:
+            nn:
+               private_ips: ["10.0.2.15"]
+               public_ips: ["10.0.2.15"]
+            dn:
+               private_ips: ["10.0.2.15"]
+               public_ips: ["10.0.2.15"]
+            rm:
+               private_ips: ["10.0.2.15"]
+               public_ips: ["10.0.2.15"]
+            nm:
+               private_ips: ["10.0.2.15"]
+               public_ips: ["10.0.2.15"]
+            use_hopsworks: "false"
+            use_systemd: "true"
          hadoop:
             yarn:
                user: glassfish
@@ -56,6 +84,7 @@ suites:
             private_ips: ["10.0.2.15"]
             public_ips: ["10.0.2.15"]
          adam:
+            user: glassfish
             private_ips: ["10.0.2.15"]
             public_ips: ["10.0.2.15"]
          kagent:

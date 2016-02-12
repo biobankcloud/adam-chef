@@ -30,10 +30,10 @@ end
 
 # Extract Adam
 bash 'extract-adam' do
-        user node[:adam][:user]
-        group node[:adam][:group]
+        user "root"
         code <<-EOH
                 tar -xf #{cached_package_filename} -C #{node[:adam][:base_dir]}
+                chown -R #{node.adam.user}:#{node.adam.group} #{node[:adam][:base_dir]}/adam*
                 touch #{node[:adam][:base_dir]}/.adam_extracted_#{node[:adam][:version]}
         EOH
      not_if { ::File.exists?( "#{node[:adam][:base_dir]}/.adam_extracted_#{node[:adam][:version]}" ) }
