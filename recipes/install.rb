@@ -11,7 +11,7 @@ user node[:adam][:user] do
   not_if "getent passwd #{node[:adam]['user']}"
 end
 
-group node[:hadoop][:group] do
+group node[:apache_hadoop][:group] do
   action :modify
   members ["#{node[:adam][:user]}"]
   append true
@@ -48,5 +48,5 @@ end
 
 
 
-#master_ip = private_recipe_ip("spark","master")
+#master_ip = private_recipe_ip("hadoop_spark","master")
 #namenode_ip = private_recipe_ip("hops","nn")

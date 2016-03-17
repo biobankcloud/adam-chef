@@ -1,10 +1,10 @@
 dependencies: 
   - recipe: adam::install
     local:
-      - spark::install
+      - hadoop_spark::install
   - recipe: adam::default
     local:
-      - spark::install
+      - hadoop_spark::install
     global:  
       - hops::nn
       - hops::dn

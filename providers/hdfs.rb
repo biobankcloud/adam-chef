@@ -2,16 +2,16 @@ action :upload_jars do
 
 home = "#{node.hdfs.user_home}/#{node.adam.user}"
   
-hadoop_hdfs_directory "#{home}" do
+apache_hadoop_hdfs_directory "#{home}" do
   action :create
   owner node[:adam][:user]
   mode "1777"
-  not_if ". #{node[:hadoop][:home]}/sbin/set-env.sh && #{node[:hadoop][:home]}/bin/hdfs dfs -test -d #{home}"
+  not_if ". #{node[:apache_hadoop][:home]}/sbin/set-env.sh && #{node[:apache_hadoop][:home]}/bin/hdfs dfs -test -d #{home}"
 end
 
 jar_path = "hdfs://#{home}/#{node.adam.jar}"
 
-hadoop_hdfs_directory "#{node.adam.home}/repo/#{node.adam.jar}" do
+apache_hadoop_hdfs_directory "#{node.adam.home}/repo/#{node.adam.jar}" do
   action :put_as_superuser
   owner node[:adam][:user]
   group node[:adam][:group]
@@ -25,8 +25,8 @@ end
 #     user node[:adam][:user]
 #     code <<-EOF
 #      set -e
-#      . #{node[:hadoop][:home]}/sbin/set-env.sh
-# cd #{node[:hadoop][:home]}/bin
+#      . #{node[:apache_hadoop][:home]}/sbin/set-env.sh
+# cd #{node[:apache_hadoop][:home]}/bin
 # ./hdfs dfs -copyFromLocal #{node[:adam][:home]}/adam-cli/target/appassembler/repo/commons-cli/commons-cli/1.2/commons-cli-1.2.jar /user/#{node[:adam][:user]}/repo
 # ./hdfs dfs -copyFromLocal #{node[:adam][:home]}/adam-cli/target/appassembler/repo/commons-httpclient/commons-httpclient/3.1/commons-httpclient-3.1.jar /user/#{node[:adam][:user]}/repo
 # ./hdfs dfs -copyFromLocal #{node[:adam][:home]}/adam-cli/target/appassembler/repo/commons-codec/commons-codec/1.4/commons-codec-1.4.jar /user/#{node[:adam][:user]}/repo
@@ -96,7 +96,7 @@ end
 # ./hdfs dfs -copyFromLocal #{node[:adam][:home]}/adam-cli-0.15.1-SNAPSHOT.jar /user/#{node[:adam][:user]}/repo 
 
 
-# #     #{node[:hadoop][:home]}/bin/hadoop fs -chmod #{new_resource.mode} #{new_resource.name} 
+# #     #{node[:apache_hadoop][:home]}/bin/hadoop fs -chmod #{new_resource.mode} #{new_resource.name} 
 #     EOF
 #   end
 
