@@ -1,6 +1,6 @@
 action :upload_jars do
 
-home = "#{node.hdfs.user_home}/#{node.adam.user}"
+home = "#{node.apache_hadoop.hdfs.user_home}/#{node.adam.user}"
   
 apache_hadoop_hdfs_directory "#{home}" do
   action :create
@@ -17,6 +17,7 @@ apache_hadoop_hdfs_directory "#{node.adam.home}/repo/#{node.adam.jar}" do
   group node[:adam][:group]
   mode "1755"
   dest jar_path
+  not_if ". #{node[:apache_hadoop][:home]}/sbin/set-env.sh && #{node[:apache_hadoop][:home]}/bin/hdfs dfs -test -f #{node.adam.home}/repo/#{node.adam.jar}"
 end
 
 # new_resource.updated_by_last_action(false)
