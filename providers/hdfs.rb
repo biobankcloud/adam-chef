@@ -9,7 +9,8 @@ apache_hadoop_hdfs_directory "#{home}" do
   not_if ". #{node[:apache_hadoop][:home]}/sbin/set-env.sh && #{node[:apache_hadoop][:home]}/bin/hdfs dfs -test -d #{home}"
 end
 
-jar_path = "hdfs://#{home}/#{node.adam.jar}"
+#jar_path = "hdfs://#{home}/#{node.adam.jar}"
+jar_path = "hdfs://#{home}/adam-cli.jar"
 
 apache_hadoop_hdfs_directory "#{node.adam.home}/repo/#{node.adam.jar}" do
   action :put_as_superuser
