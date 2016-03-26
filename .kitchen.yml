@@ -13,7 +13,7 @@ provisioner:
 
 platforms:
   - name: ubuntu-14.04
-#  - name: centos-6.5
+#  - name: centos-7.0
 
 suites:
   - name: default
@@ -22,17 +22,15 @@ suites:
   - name: default
     run_list:
       - recipe[kagent::install]
-      - recipe[hadoop::install]
-      - recipe[spark::install]
+      - recipe[apache_hadoop::install]
+      - recipe[hadoop_spark::install]
       - recipe[adam::install]
-      - recipe[hadoop::nn]
-      - recipe[hadoop::dn]
-      - recipe[spark::yarn]
+      - recipe[apache_hadoop::nn]
+      - recipe[apache_hadoop::dn]
+      - recipe[hadoop_spark::yarn]
       - recipe[adam]
     attributes:
          vagrant: "true"
-         hdfs:
-            user: glassfish
          ndb:
             mgmd:
                private_ips: ["10.0.2.15"]
@@ -61,7 +59,9 @@ suites:
                public_ips: ["10.0.2.15"]
             use_hopsworks: "false"
             use_systemd: "true"
-         hadoop:
+         apache_hadoop:
+            hdfs:
+               user: glassfish
             yarn:
                user: glassfish
             mr:
