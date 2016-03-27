@@ -4,9 +4,9 @@ home = "#{node.apache_hadoop.hdfs.user_home}/#{node.adam.user}"
   
 apache_hadoop_hdfs_directory "#{home}" do
   action :create
-  owner node[:adam][:user]
+  owner node.adam.user
   mode "1777"
-  not_if ". #{node[:apache_hadoop][:home]}/sbin/set-env.sh && #{node[:apache_hadoop][:home]}/bin/hdfs dfs -test -d #{home}"
+  not_if ". #{node.apache_hadoop.home}/sbin/set-env.sh && #{node.apache_hadoop.home}/bin/hdfs dfs -test -d #{home}"
 end
 
 #jar_path = "hdfs://#{home}/#{node.adam.jar}"
@@ -14,11 +14,11 @@ jar_path = "hdfs://#{home}/adam-cli.jar"
 
 apache_hadoop_hdfs_directory "#{node.adam.home}/repo/#{node.adam.jar}" do
   action :put_as_superuser
-  owner node[:adam][:user]
-  group node[:adam][:group]
+  owner node.adam.user
+  group node.adam.group
   mode "1755"
   dest jar_path
-  not_if ". #{node[:apache_hadoop][:home]}/sbin/set-env.sh && #{node[:apache_hadoop][:home]}/bin/hdfs dfs -test -f #{node.adam.home}/repo/#{node.adam.jar}"
+  not_if ". #{node.apache_hadoop.home}/sbin/set-env.sh && #{node.apache_hadoop.home}/bin/hdfs dfs -test -f #{node.adam.home}/repo/#{node.adam.jar}"
 end
 
 # new_resource.updated_by_last_action(false)
