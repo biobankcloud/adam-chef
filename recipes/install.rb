@@ -34,9 +34,9 @@ bash 'extract-adam' do
         code <<-EOH
                 tar -xf #{cached_package_filename} -C #{node.adam.dir}
                 chown -R #{node.adam.user}:#{node.adam.group} #{node.adam.dir}/adam*
-                touch #{node.adam.base_dir}/.adam_extracted_#{node.adam.version}
+                touch #{node.adam.home}/.adam_extracted_#{node.adam.version}
         EOH
-     not_if { ::File.exists?( "#{node.adam.base_dir}/.adam_extracted_#{node.adam.version}" ) }
+     not_if { ::File.exists?( "#{node.adam.home}/.adam_extracted_#{node.adam.version}" ) }
 end
 
 
