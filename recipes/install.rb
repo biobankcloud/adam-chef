@@ -32,15 +32,15 @@ end
 bash 'extract-adam' do
         user "root"
         code <<-EOH
-                tar -xf #{cached_package_filename} -C #{node.adam.base_dir}
-                chown -R #{node.adam.user}:#{node.adam.group} #{node.adam.base_dir}/adam*
+                tar -xf #{cached_package_filename} -C #{node.adam.dir}
+                chown -R #{node.adam.user}:#{node.adam.group} #{node.adam.dir}/adam*
                 touch #{node.adam.base_dir}/.adam_extracted_#{node.adam.version}
         EOH
      not_if { ::File.exists?( "#{node.adam.base_dir}/.adam_extracted_#{node.adam.version}" ) }
 end
 
 
-link "#{node.adam.base_dir}/adam" do
+link "#{node.adam.base_dir}" do
   owner node.adam.user
   group node.adam.group
   to node.adam.home

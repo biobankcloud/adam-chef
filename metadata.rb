@@ -1,10 +1,10 @@
-name             'adam'
+name             "adam"
 maintainer       "Jim Dowling"
 maintainer_email "jdowling@kth.se"
 license          "Apache v2"
 description      'Installs/Configures Adam/Spark'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          "0.1.0"
+version          "0.1.2"
 
 depends          "hadoop_spark"
 depends          "kagent"
@@ -20,4 +20,8 @@ attribute "adam/user",
 
 attribute "adam/group",
 :description => "Groupname to run adam as",
+:type => 'string'
+
+attribute "adam/dir",
+:description => "Base installation dir (default: /srv)",
 :type => 'string'
