@@ -11,4 +11,4 @@ default.adam.base_dir            = "#{node.adam.dir}/adam"
 # adam-distribution-spark2_2.11-0.20.0-bin.tar.gz
 default.adam.url                 = "#{default.download_url}/adam/adam-distribution-spark2_#{node.scala.version}-#{default.adam.version}-bin.tar.gz"
 
-default.adam.jar                 = "adam-cli_#{node.scala.version}-#{node.adam.version}.jar"
+default.adam.jar                 = "adam_#{node.scala.version}-#{node.adam.version}.jar"
