@@ -2,7 +2,7 @@ include_attribute "kagent"
 include_attribute "hadoop_spark"
 
 default.scala.version            = "2.11"
-default.adam.version             = "0.20.0"
+default.adam.version             = "0.21.0"
 default.adam.user                = "#{node.hadoop_spark.user}"
 default.adam.group               = "#{node.hadoop_spark.group}"
 default.adam.dir                 = "/srv"
