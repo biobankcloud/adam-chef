@@ -8,7 +8,6 @@ version          "0.1.2"
 
 depends          "hadoop_spark"
 depends          "kagent"
-depends          "apache_hadoop"
 depends          "hops"
 
 recipe           "install", "Installs Adam binaries"

@@ -5,5 +5,4 @@ dependencies:
   - recipe: adam::default
     global:  
       - hops::dn
-      - apache_hadoop::dn
 

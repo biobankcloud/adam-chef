@@ -1,4 +1,4 @@
 # adam-chef
-Cookbook for installing Adam/Spark.
+Cookbook for installing Adam/Spark for Hops.
 
-Works for both 'apache_hadoop' and 'hops'.
+
