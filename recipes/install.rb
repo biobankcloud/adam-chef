@@ -1,9 +1,4 @@
 
-group node.adam.group do
-  action :create
-  append true
-end
-
 user node.adam.user do
   action :create
   system true
@@ -11,10 +6,11 @@ user node.adam.user do
   not_if "getent passwd #{node.adam['user']}"
 end
 
-group node.apache_hadoop.group do
+group node.hops.group do
   action :modify
   members ["#{node.adam.user}"]
   append true
+  not_if {"#{node.adam.group}" == "#{node.adam.user}"}
 end
 
 package_url = "#{node.adam.url}"

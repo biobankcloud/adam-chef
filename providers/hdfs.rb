@@ -1,24 +1,24 @@
 action :upload_jars do
 
-home = "#{node.apache_hadoop.hdfs.user_home}/#{node.adam.user}"
+home = "#{node.hops.hdfs.user_home}/#{node.adam.user}"
   
-apache_hadoop_hdfs_directory "#{home}" do
+hops_hdfs_directory "#{home}" do
   action :create
   owner node.adam.user
   mode "1777"
-  not_if ". #{node.apache_hadoop.home}/sbin/set-env.sh && #{node.apache_hadoop.home}/bin/hdfs dfs -test -d #{home}"
+  not_if ". #{node.hops.home}/sbin/set-env.sh && #{node.hops.home}/bin/hdfs dfs -test -d #{home}"
 end
 
 #jar_path = "hdfs://#{home}/#{node.adam.jar}"
 jar_path = "hdfs://#{home}/adam-cli.jar"
 
-apache_hadoop_hdfs_directory "#{node.adam.home}/repo/#{node.adam.jar}" do
+hops_hdfs_directory "#{node.adam.home}/repo/#{node.adam.jar}" do
   action :put_as_superuser
   owner node.adam.user
   group node.adam.group
   mode "1755"
   dest jar_path
-  not_if ". #{node.apache_hadoop.home}/sbin/set-env.sh && #{node.apache_hadoop.home}/bin/hdfs dfs -test -f #{node.adam.home}/repo/#{node.adam.jar}"
+  not_if ". #{node.hops.home}/sbin/set-env.sh && #{node.hops.home}/bin/hdfs dfs -test -f #{node.adam.home}/repo/#{node.adam.jar}"
 end
 
 # new_resource.updated_by_last_action(false)
@@ -27,8 +27,8 @@ end
 #     user node[:adam][:user]
 #     code <<-EOF
 #      set -e
-#      . #{node[:apache_hadoop][:home]}/sbin/set-env.sh
-# cd #{node[:apache_hadoop][:home]}/bin
+#      . #{node[:hops][:home]}/sbin/set-env.sh
+# cd #{node[:hops][:home]}/bin
 # ./hdfs dfs -copyFromLocal #{node[:adam][:home]}/adam-cli/target/appassembler/repo/commons-cli/commons-cli/1.2/commons-cli-1.2.jar /user/#{node[:adam][:user]}/repo
 # ./hdfs dfs -copyFromLocal #{node[:adam][:home]}/adam-cli/target/appassembler/repo/commons-httpclient/commons-httpclient/3.1/commons-httpclient-3.1.jar /user/#{node[:adam][:user]}/repo
 # ./hdfs dfs -copyFromLocal #{node[:adam][:home]}/adam-cli/target/appassembler/repo/commons-codec/commons-codec/1.4/commons-codec-1.4.jar /user/#{node[:adam][:user]}/repo
@@ -98,7 +98,7 @@ end
 # ./hdfs dfs -copyFromLocal #{node[:adam][:home]}/adam-cli-0.15.1-SNAPSHOT.jar /user/#{node[:adam][:user]}/repo 
 
 
-# #     #{node[:apache_hadoop][:home]}/bin/hadoop fs -chmod #{new_resource.mode} #{new_resource.name} 
+# #     #{node[:hops][:home]}/bin/hadoop fs -chmod #{new_resource.mode} #{new_resource.name} 
 #     EOF
 #   end
 
