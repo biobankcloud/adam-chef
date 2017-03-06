@@ -24,3 +24,8 @@ attribute "adam/group",
 attribute "adam/dir",
 :description => "Base installation dir (default: /srv)",
 :type => 'string'
+
+attribute "install/dir",
+          :description => "Set to a base directory under which we will install.",
+          :type => "string"
+
