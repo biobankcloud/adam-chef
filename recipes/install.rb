@@ -1,12 +1,17 @@
+group node.adam.group do
+  action :create
+  not_if "getent group #{node.adam.group}"
+end
 
 user node.adam.user do
   action :create
+  gid node.adam.group
   system true
   shell "/bin/bash"
   not_if "getent passwd #{node.adam['user']}"
 end
 
-group node.hops.group do
+group node.adam.group do
   action :modify
   members ["#{node.adam.user}"]
   append true
