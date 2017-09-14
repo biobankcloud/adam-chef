@@ -48,7 +48,3 @@ link "#{node.adam.base_dir}" do
   to node.adam.home
 end
 
-
-
-#master_ip = private_recipe_ip("hadoop_spark","master")
-#namenode_ip = private_recipe_ip("hops","nn")

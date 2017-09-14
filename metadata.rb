@@ -32,3 +32,5 @@ attribute "install/dir",
 attribute "install/user",
           :description => "User to install the services as",
           :type => "string"
+
+

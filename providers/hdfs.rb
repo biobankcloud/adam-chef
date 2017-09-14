@@ -9,7 +9,6 @@ hops_hdfs_directory "#{home}" do
   not_if ". #{node.hops.home}/sbin/set-env.sh && #{node.hops.home}/bin/hdfs dfs -test -d #{home}"
 end
 
-#jar_path = "hdfs://#{home}/#{node.adam.jar}"
 jar_path = "hdfs://#{home}/adam-cli.jar"
 
 hops_hdfs_directory "#{node.adam.home}/repo/#{node.adam.jar}" do
@@ -20,6 +19,21 @@ hops_hdfs_directory "#{node.adam.home}/repo/#{node.adam.jar}" do
   dest jar_path
   not_if ". #{node.hops.home}/sbin/set-env.sh && #{node.hops.home}/bin/hdfs dfs -test -f #{node.adam.home}/repo/#{node.adam.jar}"
 end
+
+
+link "#{node.hops.base_dir}/share/hadoop/yarn/lib/#{jarFile}" do
+  owner node["hops"]["yarn"]["user"]
+  group node["hops"]["group"]
+  to "#{node['adam']['base_dir']}/lib/#{jarFile}"
+end
+
+link "#{node.adam.base_dir}" do
+  owner node.adam.user
+  group node.adam.group
+  to node.adam.home
+end
+
+
 
 # new_resource.updated_by_last_action(false)
 
