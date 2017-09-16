@@ -13,9 +13,9 @@ end
 
 avro_url = "#{node.adam.avro_url}"
 base_package_filename = File.basename(avro_url)
-cached_package_filename = "#{Chef::Config.file_cache_path}/#{base_package_filename}"
+file = "#{Chef::Config.file_cache_path}/#{base_package_filename}"
 
-remote_file cached_package_filename do
+remote_file file do
   source avro_url
   owner "#{node.adam.user}"
   mode "0644"
@@ -33,11 +33,11 @@ bash 'extract-avro-version' do
                 rm -f #{node.hops.base_dir}/share/hadoop/kms/tomcat/webapps/kms/WEB-INF/lib/avro-1.7.4.jar
                 rm -f #{node.hops.base_dir}/share/hadoop/httpfs/tomcat/webapps/webhdfs/WEB-INF/lib/avro-1.7.4.jar
 
-                cp #{cache_packaged_filename} #{node.hops.base_dir}/share/hadoop/tools/lib
-                cp #{cache_packaged_filename} #{node.hops.base_dir}/share/hadoop/common/lib
-                cp #{cache_packaged_filename} #{node.hops.base_dir}/share/hadoop/mapreduce/lib
-                mv #{cache_packaged_filename} #{node.hops.base_dir}/share/hadoop/kms/tomcat/webapps/kms/WEB-INF/lib
-                mv #{cache_packaged_filename} #{node.hops.base_dir}/share/hadoop/httpfs/tomcat/webapps/webhdfs/WEB-INF/lib
+                cp #{file} #{node.hops.base_dir}/share/hadoop/tools/lib
+                cp #{file} #{node.hops.base_dir}/share/hadoop/common/lib
+                cp #{file} #{node.hops.base_dir}/share/hadoop/mapreduce/lib
+                cp #{file} #{node.hops.base_dir}/share/hadoop/kms/tomcat/webapps/kms/WEB-INF/lib
+                cp #{file} #{node.hops.base_dir}/share/hadoop/httpfs/tomcat/webapps/webhdfs/WEB-INF/lib
 
                 chown -R #{node.adam.user}:#{node.adam.group} #{node.adam.dir}/adam*
                 chmod 750 #{node.adam.dir}/adam*
