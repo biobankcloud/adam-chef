@@ -4,5 +4,5 @@ dependencies:
       - hadoop_spark::install
   - recipe: adam::default
     global:  
-      - hops::dn
+      - hops::nm
 
