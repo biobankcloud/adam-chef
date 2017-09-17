@@ -18,6 +18,16 @@ group node.adam.group do
   not_if {"#{node.adam.group}" == "#{node.adam.user}"}
 end
 
+
+directory node.adam.dir do
+  owner node.adam.user
+  group node.adam.group
+  mode "0775"
+  action :create
+  not_if { File.directory?("#{node.adam.dir}") }
+end
+
+
 package_url = "#{node.adam.url}"
 base_package_filename = File.basename(package_url)
 cached_package_filename = "#{Chef::Config.file_cache_path}/#{base_package_filename}"
