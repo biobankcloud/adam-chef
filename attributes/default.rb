@@ -14,4 +14,4 @@ default.adam.url                 = "#{node.download_url}/adam-distribution-spark
 # adam_2.11-0.22.0.jar
 default.adam.jar                 = "adam_#{node.scala.version}-#{node.adam.version}.jar"
 
-default.adam.avro_jar            = "#{node.download_url}/avro-1.7.7.jar"
+default.adam.avro_url            = "#{node.download_url}/avro-1.7.7.jar"
