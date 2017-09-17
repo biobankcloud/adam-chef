@@ -33,19 +33,18 @@ bash 'extract-avro-version' do
                 rm -f #{node.hops.base_dir}/share/hadoop/kms/tomcat/webapps/kms/WEB-INF/lib/avro-1.7.4.jar
                 rm -f #{node.hops.base_dir}/share/hadoop/httpfs/tomcat/webapps/webhdfs/WEB-INF/lib/avro-1.7.4.jar
 
-                cp #{file} #{node.hops.base_dir}/share/hadoop/tools/lib
-                cp #{file} #{node.hops.base_dir}/share/hadoop/common/lib
-                cp #{file} #{node.hops.base_dir}/share/hadoop/mapreduce/lib
-                cp #{file} #{node.hops.base_dir}/share/hadoop/kms/tomcat/webapps/kms/WEB-INF/lib
-                cp #{file} #{node.hops.base_dir}/share/hadoop/httpfs/tomcat/webapps/webhdfs/WEB-INF/lib
+                cp #{file} #{node.hops.base_dir}/share/hadoop/tools/lib/#{file}
+                cp #{file} #{node.hops.base_dir}/share/hadoop/common/lib/#{file}
+                cp #{file} #{node.hops.base_dir}/share/hadoop/mapreduce/lib/#{file}
+                cp #{file} #{node.hops.base_dir}/share/hadoop/kms/tomcat/webapps/kms/WEB-INF/lib/#{file}
+                cp #{file} #{node.hops.base_dir}/share/hadoop/httpfs/tomcat/webapps/webhdfs/WEB-INF/lib/#{file}
 
                 chown -R #{node.adam.user}:#{node.adam.group} #{node.adam.dir}/adam*
                 chmod 750 #{node.adam.dir}/adam*
                 service datanode restart
                 service nodemanager restart
-                touch #{node.adam.home}/.adam_extracted_#{node.adam.version}
         EOH
-     not_if { ::File.exists?( "#{node.adam.home}/.adam_extracted_#{node.adam.version}" ) }
+     not_if { ::File.exists?( "#{node.hops.base_dir}/share/hadoop/common/lib/#{file}" ) }
 end
 
 
